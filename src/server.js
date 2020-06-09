@@ -4,12 +4,14 @@ const express = require('express');
 const morgon = require('morgan');
 const router = require('./auth/router.js');
 const app = express();
+
 const notFoundHandler = require('../src/middlewars/404.js');
 const errorHandler = require('../src/middlewars/500.js');
 
 app.use(express.json());
 app.use(morgon('dev'));
-app.use('/',router);
+app.use(express.static('./public'));
+app.use('',router);
 
 app.use('*',notFoundHandler);
 app.use(errorHandler);

@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const users = require('./models/users/users-model.js');
 const basicAuth = require('./middleware/basic.js');
-
+const oauthAuth = require('./middleware/oauth.js');
 router.post('/signup', save);
 router.post('/signin', basicAuth , signin);
 router.get('/users' , list);
+router.get('/oauth', oauthAuth , oauth);
 
 
 async function save (req,res){
@@ -27,5 +28,10 @@ async function list(req,res){
   const allUsers = await users.get({});
   res.json( {users : allUsers} );
 }
-
+// router.get('/oauth',oauthAuth,(req,res) =>{
+//   res.json({token : req.token });
+// });
+function oauth(oauth,req,res){
+  res.json({ token : req.token });
+}
 module.exports = router;

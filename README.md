@@ -14,6 +14,7 @@
 
 ## Links and Resources
   - [GET](http http://localhost:3000/users)
+  - [Heroku]()
   - 
 
 ## Modules
@@ -42,5 +43,6 @@
 
 ## UML
  - ![](./auth-server.jpg)
+ - ![](./OAuth Server.jpg)
 
  
