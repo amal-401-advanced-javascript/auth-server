@@ -31,7 +31,7 @@ class Users extends Model {
     // const token = jwt.sign({ username : user.username}, SECRET);
     const token = jwt.sign({
       exp: Math.floor(Date.now() / 1000) + (15 * 60),
-      algorithm:  'RS384',
+      algorithm:  'HS256',
       username: user.username,
     },SECRET);
     return token;
