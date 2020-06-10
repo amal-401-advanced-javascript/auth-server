@@ -17,7 +17,6 @@ async function save (req,res){
   }catch(err){
     res.status(403).send('user already exists');
   }
-    
 }
 
 function signin (req, res) {
@@ -28,10 +27,8 @@ async function list(req,res){
   const allUsers = await users.get({});
   res.json( {users : allUsers} );
 }
-// router.get('/oauth',oauthAuth,(req,res) =>{
-//   res.json({token : req.token });
-// });
-function oauth(oauth,req,res){
+
+function oauth(req,res){
   res.json({ token : req.token });
 }
 module.exports = router;

@@ -4,6 +4,7 @@
 
 # Author: 
   -  Amal Almomani
+  
 # lab name
   - Authentication
 
@@ -44,5 +45,6 @@
 ## UML
  - ![](./auth-server.jpg)
  - ![](./OAuth Server.jpg)
+ - ![](./bearer.jpg)
 
  

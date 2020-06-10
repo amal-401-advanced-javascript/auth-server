@@ -66,3 +66,4 @@ async function getUser(remoteUser) {
   const token = users.generateToken(user);
   return [user, token];
 }
+
