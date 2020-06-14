@@ -1,10 +1,13 @@
 'use strict';
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const Model = require('../mongo.js');
-const SECRET = process.env.SECRET || 'mysecret';
 const schema= require('./users-schema.js');
+const Model = require('../mongo.js');
+const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
+
+const SECRET = process.env.SECRET || 'mysecret';
+
 
 class Users extends Model {
   constructor(){
@@ -12,19 +15,20 @@ class Users extends Model {
   }
   async save(record){
     const db = await this.get ({username : record.username});
+    
     if (db.length == 0) {
-      record.password = await bcrypt.hash(record.password, 5);
+      record.password = await bcryptjs.hash(record.password, 5);
       const user = await this.create(record);
       return user;
     }
-    return Promise.reject(); // ==>.catch
+    // return Promise.reject(); // ==>.catch/
   }
   // user:pass
   //signin
   async authenticateBasic(user , pass){
     const db = await this.get({username : user});
-    const valid = await bcrypt.compare(pass,db[0].password);
-    return valid ? db: Promise.reject('wrong password');
+    const valid = await bcryptjs.compare(pass,db[0].password);
+    return valid ? db : Promise.reject('wrong password');
   }
   //signin/signup
   generateToken(user){

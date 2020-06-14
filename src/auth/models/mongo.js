@@ -8,7 +8,7 @@ class Model {
 
 
   get(_id) {
-    const queryObject = _id ? { _id } : {};
+    const queryObject = _id ?  _id  : {};
     return this.schema.find(queryObject);
   }
  
